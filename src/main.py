@@ -13,12 +13,17 @@ def main() -> None:
     parser.add_argument("file", help="Path to the input file")
     parser.add_argument("-o", "--output", required=True, help="Path to the output file")
     parser.add_argument("-d", "--decrypt", action="store_true", help="Decrypt the file")
+    parser.add_argument("-p", "--password", help="Password (if not provided, will prompt)")
     args = parser.parse_args()
 
     if not os.path.isfile(args.file):
         sys.exit(f"Error: '{args.file}' is not a file")
 
-    password = getpass("Password: ")
+    if args.password:
+        password = args.password
+    else:
+        password = getpass("Password: ")
+
     if not password:
         sys.exit("Error: password cannot be empty")
 
