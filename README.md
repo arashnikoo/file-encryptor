@@ -4,9 +4,11 @@ Encrypt and decrypt files with a password using AES-256-CBC.
 
 ## Why?
 
-You're about to send your tax documents to your accountant over email. You could zip them with a password — but ZipCrypto is broken and AES-256 zip support is spotty across platforms. You could use GPG, but your accountant doesn't have a GPG key and you don't want to walk them through setting one up.
+You need to store a production database dump in S3 for debugging, but the dump contains PII. You need to share an `.env` file with a teammate over Slack. You want to commit encrypted secrets to a public repo so your CI pipeline can decrypt them at runtime. You're backing up a server config to a USB drive that could get lost.
 
-This tool solves that: one command, one password, no setup. The output is a single self-contained file you can attach to an email, upload to cloud storage, or commit to a repo. The recipient just needs this script (or Docker) and the password to decrypt it. No keys, no config, no fuss.
+In all these cases you need one thing: take a file, lock it with a password, and get a single opaque blob that's safe to store or transmit anywhere. No keyrings, no PKI, no recipient setup. Just a password.
+
+This tool does exactly that. The output is a self-contained encrypted file — salt, IV, and ciphertext in one binary blob. The recipient only needs this script (or Docker) and the password. No keys, no config, no fuss.
 
 ## Setup
 
