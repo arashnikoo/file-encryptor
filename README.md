@@ -21,19 +21,22 @@ The wrapper script auto-creates a virtualenv and installs dependencies on first 
 ## Usage
 
 ```bash
-# Encrypt
+# Encrypt (prompts for password)
 ./encrypt.sh myfile.txt -o myfile.txt.enc
 
+# Encrypt with password on command line
+./encrypt.sh myfile.txt -o myfile.txt.enc -p mypassword
+
 # Decrypt
-./encrypt.sh -d myfile.txt.enc -o myfile.txt
+./encrypt.sh -d myfile.txt.enc -o myfile.txt -p mypassword
 ```
 
 You can also use the Python script directly after installing dependencies:
 
 ```bash
 pip install -r requirements.txt
-python -m src.main myfile.txt -o myfile.txt.enc
-python -m src.main -d myfile.txt.enc -o myfile.txt
+python -m src.main myfile.txt -o myfile.txt.enc -p mypassword
+python -m src.main -d myfile.txt.enc -o myfile.txt -p mypassword
 ```
 
 ## Docker
