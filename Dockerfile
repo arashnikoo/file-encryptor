@@ -7,4 +7,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY src/ src/
 
-ENTRYPOINT ["python", "src/encrypt.py"]
+ENTRYPOINT ["python", "-m", "src.main"]

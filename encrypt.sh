@@ -12,4 +12,4 @@ else
     source "$VENV_DIR/bin/activate"
 fi
 
-exec python "$SCRIPT_DIR/src/encrypt.py" "$@"
+exec python -m src.main "$@"

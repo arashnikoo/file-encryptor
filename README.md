@@ -32,8 +32,8 @@ You can also use the Python script directly after installing dependencies:
 
 ```bash
 pip install -r requirements.txt
-python src/encrypt.py myfile.txt -o myfile.txt.enc
-python src/encrypt.py -d myfile.txt.enc -o myfile.txt
+python -m src.main myfile.txt -o myfile.txt.enc
+python -m src.main -d myfile.txt.enc -o myfile.txt
 ```
 
 ## Docker

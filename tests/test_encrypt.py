@@ -4,8 +4,10 @@ import tempfile
 
 import pytest
 
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
-from encrypt import encrypt_file, decrypt_file, SALT_SIZE, IV_SIZE
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
+from src.encrypt import encrypt_file
+from src.decrypt import decrypt_file
+from src.crypto import SALT_SIZE, IV_SIZE
 
 
 def test_encrypt_decrypt_roundtrip():
