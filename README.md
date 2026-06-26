@@ -13,7 +13,7 @@ The output is a self-contained encrypted file — salt, IV, and ciphertext in on
 ## Setup
 
 ```bash
-./encrypt.sh myfile.txt -o myfile.txt.enc
+./encrypt.sh -i myfile.txt -o myfile.txt.enc
 ```
 
 The wrapper script auto-creates a virtualenv and installs dependencies on first run.
@@ -21,15 +21,14 @@ The wrapper script auto-creates a virtualenv and installs dependencies on first 
 ## Usage
 
 ```
-usage: main.py [-h] -o OUTPUT [-d] [-p PASSWORD] file
+usage: main.py [-h] -i INPUT -o OUTPUT [-d] [-p PASSWORD]
 
 Encrypt or decrypt a file with a password
 
-positional arguments:
-  file                  Path to the input file
-
 options:
   -h, --help            show this help message and exit
+  -i INPUT, --input INPUT
+                        Path to the input file
   -o OUTPUT, --output OUTPUT
                         Path to the output file
   -d, --decrypt         Decrypt the file
@@ -41,21 +40,21 @@ options:
 
 ```bash
 # Encrypt (prompts for password)
-./encrypt.sh myfile.txt -o myfile.txt.enc
+./encrypt.sh -i myfile.txt -o myfile.txt.enc
 
 # Encrypt with password on command line
-./encrypt.sh myfile.txt -o myfile.txt.enc -p mypassword
+./encrypt.sh -i myfile.txt -o myfile.txt.enc -p mypassword
 
 # Decrypt
-./encrypt.sh -d myfile.txt.enc -o myfile.txt -p mypassword
+./encrypt.sh -d -i myfile.txt.enc -o myfile.txt -p mypassword
 ```
 
 You can also use the Python script directly after installing dependencies:
 
 ```bash
 pip install -r requirements.txt
-python -m src.main myfile.txt -o myfile.txt.enc -p mypassword
-python -m src.main -d myfile.txt.enc -o myfile.txt -p mypassword
+python -m src.main -i myfile.txt -o myfile.txt.enc -p mypassword
+python -m src.main -d -i myfile.txt.enc -o myfile.txt -p mypassword
 ```
 
 ## Docker
@@ -65,10 +64,10 @@ python -m src.main -d myfile.txt.enc -o myfile.txt -p mypassword
 docker build -t file-encryptor .
 
 # Encrypt
-docker run --rm -v "$PWD:/data" file-encryptor /data/myfile.txt -o /data/myfile.txt.enc
+docker run --rm -v "$PWD:/data" file-encryptor -i /data/myfile.txt -o /data/myfile.txt.enc
 
 # Decrypt
-docker run --rm -v "$PWD:/data" file-encryptor -d /data/myfile.txt.enc -o /data/myfile.txt
+docker run --rm -v "$PWD:/data" file-encryptor -d -i /data/myfile.txt.enc -o /data/myfile.txt
 ```
 
 ## Tests

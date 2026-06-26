@@ -10,14 +10,14 @@ from .decrypt import decrypt_file
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Encrypt or decrypt a file with a password")
-    parser.add_argument("file", help="Path to the input file")
+    parser.add_argument("-i", "--input", required=True, help="Path to the input file")
     parser.add_argument("-o", "--output", required=True, help="Path to the output file")
     parser.add_argument("-d", "--decrypt", action="store_true", help="Decrypt the file")
     parser.add_argument("-p", "--password", help="Password (if not provided, will prompt)")
     args = parser.parse_args()
 
-    if not os.path.isfile(args.file):
-        sys.exit(f"Error: '{args.file}' is not a file")
+    if not os.path.isfile(args.input):
+        sys.exit(f"Error: '{args.input}' is not a file")
 
     if args.password:
         password = args.password
@@ -28,9 +28,9 @@ def main() -> None:
         sys.exit("Error: password cannot be empty")
 
     if args.decrypt:
-        decrypt_file(args.file, args.output, password)
+        decrypt_file(args.input, args.output, password)
     else:
-        encrypt_file(args.file, args.output, password)
+        encrypt_file(args.input, args.output, password)
 
 
 if __name__ == "__main__":
