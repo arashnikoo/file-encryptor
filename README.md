@@ -4,11 +4,11 @@ Encrypt and decrypt files with a password using AES-256-CBC.
 
 ## Why?
 
-You need to store a production database dump in S3 for debugging, but the dump contains PII. You need to share an `.env` file with a teammate over Slack. You want to commit encrypted secrets to a public repo so your CI pipeline can decrypt them at runtime. You're backing up a server config to a USB drive that could get lost.
+I built this primarily for my personal backup workflow: encrypt files before syncing them to cloud storage, so a compromised account doesn't expose everything. But the use cases go well beyond that — sharing secrets with teammates, committing encrypted configs to a repo, securing database dumps, encrypting files before sending them over insecure channels, and more.
 
-In all these cases you need one thing: take a file, lock it with a password, and get a single opaque blob that's safe to store or transmit anywhere. No keyrings, no PKI, no recipient setup. Just a password.
+The common thread is simple: take a file, lock it with a password, and get a single opaque blob that's safe to store or transmit anywhere. No keyrings, no PKI, no recipient setup. Just a password.
 
-This tool does exactly that. The output is a self-contained encrypted file — salt, IV, and ciphertext in one binary blob. The recipient only needs this script (or Docker) and the password. No keys, no config, no fuss.
+The output is a self-contained encrypted file — salt, IV, and ciphertext in one binary blob. The recipient only needs this script (or Docker) and the password. No keys, no config, no fuss.
 
 ## Setup
 
