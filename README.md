@@ -20,6 +20,25 @@ The wrapper script auto-creates a virtualenv and installs dependencies on first 
 
 ## Usage
 
+```
+usage: main.py [-h] -o OUTPUT [-d] [-p PASSWORD] file
+
+Encrypt or decrypt a file with a password
+
+positional arguments:
+  file                  Path to the input file
+
+options:
+  -h, --help            show this help message and exit
+  -o OUTPUT, --output OUTPUT
+                        Path to the output file
+  -d, --decrypt         Decrypt the file
+  -p PASSWORD, --password PASSWORD
+                        Password (if not provided, will prompt)
+```
+
+### Examples
+
 ```bash
 # Encrypt (prompts for password)
 ./encrypt.sh myfile.txt -o myfile.txt.enc
