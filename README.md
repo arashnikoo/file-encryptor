@@ -2,6 +2,12 @@
 
 Encrypt and decrypt files with a password using AES-256-CBC.
 
+## Why?
+
+You're about to send your tax documents to your accountant over email. You could zip them with a password — but ZipCrypto is broken and AES-256 zip support is spotty across platforms. You could use GPG, but your accountant doesn't have a GPG key and you don't want to walk them through setting one up.
+
+This tool solves that: one command, one password, no setup. The output is a single self-contained file you can attach to an email, upload to cloud storage, or commit to a repo. The recipient just needs this script (or Docker) and the password to decrypt it. No keys, no config, no fuss.
+
 ## Setup
 
 ```bash
