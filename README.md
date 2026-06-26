@@ -24,6 +24,26 @@ You can also use the Python script directly after installing dependencies:
 
 ```bash
 pip install -r requirements.txt
-python encrypt.py myfile.txt -o myfile.txt.enc
-python encrypt.py -d myfile.txt.enc -o myfile.txt
+python src/encrypt.py myfile.txt -o myfile.txt.enc
+python src/encrypt.py -d myfile.txt.enc -o myfile.txt
+```
+
+## Docker
+
+```bash
+# Build
+docker build -t file-encryptor .
+
+# Encrypt
+docker run --rm -v "$PWD:/data" file-encryptor /data/myfile.txt -o /data/myfile.txt.enc
+
+# Decrypt
+docker run --rm -v "$PWD:/data" file-encryptor -d /data/myfile.txt.enc -o /data/myfile.txt
+```
+
+## Tests
+
+```bash
+pip install -r requirements.txt
+python -m pytest tests/ -v
 ```
